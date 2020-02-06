@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:money_manager/widget/customfloataction.dart';
+import 'package:money_manager/presentation/widget/customfloataction.dart';
+
 
 class SpendScreen extends StatefulWidget {
   @override

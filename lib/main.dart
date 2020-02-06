@@ -1,17 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:money_manager/page/dashboard.dart';
-import 'package:money_manager/page/onboardscreen.dart';
+import 'package:money_manager/presentation/pages/dashboard.dart';
+import 'package:money_manager/presentation/pages/splash/onboardscreen.dart';
+import 'package:money_manager/presentation/pages/splash/splashscreen.dart';
 
-import 'package:money_manager/page/splashscreen.dart';
 
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
 
+
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+
       initialRoute: "/",
       onGenerateRoute: (RouteSettings setting){
         switch(setting.name){
@@ -30,4 +33,5 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
 

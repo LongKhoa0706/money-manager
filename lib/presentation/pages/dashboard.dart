@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:money_manager/page/chartscreen.dart';
-import 'package:money_manager/page/savescreen.dart';
-import 'package:money_manager/page/spendscreen.dart';
+import 'package:money_manager/presentation/pages/chart/chart_page.dart';
+import 'package:money_manager/presentation/pages/save/save_page.dart';
+import 'package:money_manager/presentation/pages/spend/spend_page.dart';
 
 class DashBoard extends StatefulWidget {
   @override
