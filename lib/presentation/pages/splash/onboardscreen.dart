@@ -10,9 +10,9 @@ class _OnBoardScreenState extends State<OnBoardScreen> {
   final _swiperController = SwiperController();
   int currentIndex = 0;
   List<String> _listTitle = [
-    "Savings Money",
-    "Wallet",
-    "Smart Invest",
+    'Savings Money',
+    'Wallet',
+    'Smart Invest',
   ];
   List<String> listImage = [
     'assets/image/onboard/onboard1.png',
