@@ -1,37 +1,53 @@
 import 'package:flutter/material.dart';
-import 'package:money_manager/presentation/pages/dashboard.dart';
-import 'package:money_manager/presentation/pages/splash/onboardscreen.dart';
-import 'package:money_manager/presentation/pages/splash/splashscreen.dart';
+import 'presentation/pages/splash/onboard_page.dart';
+import 'presentation/pages/splash/splash_page.dart';
+import 'presentation/pages/home/home_page.dart';
 
+void main() {
+  runApp(Application());
+}
 
-void main() => runApp(MyApp());
+class Application extends StatelessWidget {
+  /// Create a Application widget.
+  Application({
+    Key key,
+  }): super(key: key);
 
-class MyApp extends StatelessWidget {
-
-
-
+  /// Build this widget.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-
-      initialRoute: "/",
-      onGenerateRoute: (RouteSettings setting){
-        switch(setting.name){
+      initialRoute: '/',
+      onGenerateRoute: (setting) {
+        switch (setting.name) {
           case '/':
-            return MaterialPageRoute(builder: (context)=> SplashScreen());
-          case '/onboardscreen':
-            return MaterialPageRoute(builder: (context)=> OnBoardScreen());
-          case '/homescreen':
-            return MaterialPageRoute(builder: (context)=> DashBoard());
-
+            return MaterialPageRoute(
+              builder: (context) => SplashPage(),
+            );
+            break;
+          case '/onboard':
+            return MaterialPageRoute(
+              builder: (context) => OnboardPage(),
+            );
+            break;
+          case '/home':
+            return MaterialPageRoute(
+              builder: (context) => HomePage(),
+            );
+            break;
+          default:
+            return MaterialPageRoute(
+              builder: (context) => HomePage(),
+            );
+            break;
         }
       },
-      onUnknownRoute: (RouteSettings setting){
-        return MaterialPageRoute(builder: (_)=>Text("Round name does not exist"));
+      onUnknownRoute: (setting) {
+        return MaterialPageRoute(
+          builder: (_) => Text('Round name does not exist'),
+        );
       },
     );
   }
 }
-
-
