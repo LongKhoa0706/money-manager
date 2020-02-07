@@ -42,8 +42,7 @@ class RecentTab extends StatelessWidget {
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 10),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                child: Column(crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     Text(
                       'Total Spend Money',
@@ -142,16 +141,10 @@ class RecentTab extends StatelessWidget {
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: <Widget>[
-                                  Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
+                                  Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                     children: <Widget>[
-                                      Text(
-                                        "Aug 18",
-                                      ),
-                                      Text(
-                                        "Expenses: \$9000",
-                                      ),
+                                      Text("Aug 18"),
+                                      Text("Expenses: \$9000"),
                                     ],
                                   ),
                                   Divider(
@@ -162,9 +155,8 @@ class RecentTab extends StatelessWidget {
                                     shrinkWrap: true,
                                     itemBuilder: (_, index) {
                                       return ListTile(
-                                        contentPadding: EdgeInsets.only(
-                                          left: 0,
-                                        ),
+                                        contentPadding:
+                                            EdgeInsets.only(left: 0),
                                         leading: CustomIcon(
                                           iconData: Icons.free_breakfast,
                                         ),
