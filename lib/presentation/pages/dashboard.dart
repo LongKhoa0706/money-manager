@@ -12,9 +12,9 @@ class DashBoard extends StatefulWidget {
 class _DashBoardState extends State<DashBoard> {
   int currentIndex = 0;
   List<Widget> listScreen = [
-    SpendScreen(),
-    SaveScreen(),
-    ChartScreen(),
+    SpendPage(),
+    SavePage(),
+    ChartPage(),
   ];
 
   @override

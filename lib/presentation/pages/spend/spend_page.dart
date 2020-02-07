@@ -2,17 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:money_manager/presentation/widget/customfloataction.dart';
 
-
-class SpendScreen extends StatefulWidget {
+class SpendPage extends StatefulWidget {
   @override
-  _SpendScreenState createState() => _SpendScreenState();
+  _SpendPageState createState() => _SpendPageState();
 }
 
-class _SpendScreenState extends State<SpendScreen> {
+class _SpendPageState extends State<SpendPage> {
   @override
   Widget build(BuildContext context) {
     ScreenUtil.init(context);
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        backgroundColor:Colors.deepOrange[400] ,
+        child: Icon(Icons.add),
+        onPressed: () {},
+      ),
       body: SafeArea(
         child: Container(
           width: double.infinity,
@@ -62,7 +66,7 @@ class _SpendScreenState extends State<SpendScreen> {
               Expanded(
                 child: Container(
                   width: double.infinity,
-                  padding: EdgeInsets.only(bottom: 10, right: 15, left: 10),
+                  padding: EdgeInsets.only(bottom: 10, right: 30, left: 30),
                   decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.only(
@@ -70,21 +74,61 @@ class _SpendScreenState extends State<SpendScreen> {
                       topRight: Radius.circular(30),
                     ),
                   ),
-                  child: Stack(
-                    children: <Widget>[
-                      Align(
-                        alignment: Alignment.bottomRight,
-                        child: CustomFloatAction(
-                          onPressed: () {
-
-                          },
-                          child: Icon(
-                            Icons.add,
-                            color: Colors.white,
-                          ),
+                  child: SingleChildScrollView(
+                    child: Column(
+                      children: <Widget>[
+                        SizedBox(
+                          height: ScreenUtil().setHeight(100),
                         ),
-                      )
-                    ],
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: <Widget>[
+                            Text(
+                              "Aug 18",
+                              style: TextStyle(
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: ScreenUtil().setSp(60)),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.only(top: 5),
+                              child: Text(
+                                "Expenses: \$9000",
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.w400,
+                                    fontSize: ScreenUtil().setSp(40)),
+                              ),
+                            ),
+                          ],
+                        ),
+                        SizedBox(
+                          height: ScreenUtil().setHeight(30),
+                        ),
+                        ListView.separated(
+                          shrinkWrap: true,
+                          separatorBuilder: (BuildContext context, int index) =>
+                              Divider(
+                                height: 10,
+                            color: Colors.grey,
+                          ),
+                          itemCount: 3,
+                          itemBuilder: (_, index) {
+                            return ListTile(
+                              title: Text(
+                                "Lunch",
+                                style: TextStyle(
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                              trailing: Text("3000"),
+                            );
+                          },
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),

@@ -16,7 +16,7 @@ class _SplashScreenState extends State<SplashScreen> {
     startTime();
   }
   void startTime(){
-    Timer(Duration(seconds: 2),()=>Navigator.pushReplacementNamed(context, '/onboardscreen'));
+    Timer(Duration(seconds: 2), ()=>Navigator.pushReplacementNamed(context, '/onboardscreen'));
   }
   @override
   Widget build(BuildContext context) {

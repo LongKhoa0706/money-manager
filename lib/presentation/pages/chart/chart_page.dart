@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-class ChartScreen extends StatefulWidget {
+class ChartPage extends StatefulWidget {
   @override
-  _ChartScreenState createState() => _ChartScreenState();
+  _ChartPageState createState() => _ChartPageState();
 }
 
-class _ChartScreenState extends State<ChartScreen> {
+class _ChartPageState extends State<ChartPage> {
   @override
   Widget build(BuildContext context) {
     return Container();
