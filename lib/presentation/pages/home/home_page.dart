@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
+import 'tabs/history/history_tab.dart';
+import 'tabs/recent/recent_tab.dart';
+import 'tabs/setting/setting_tab.dart';
 
 class HomePage extends StatefulWidget {
   /// Create a HomePage widget.
@@ -12,6 +17,14 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  int currentIndex = 1;
+
+  List<Widget> listTabs = [
+    SettingTab(),
+    RecentTab(),
+    HistoryTab(),
+  ];
+
   /// Called when this state first inserted into tree.
   @override
   void initState() {
@@ -40,8 +53,35 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        child: Text('Home'),
+      body: IndexedStack(
+        index: currentIndex,
+        children: listTabs,
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: currentIndex,
+        elevation: 0,
+        showUnselectedLabels: false,
+        selectedItemColor: Colors.orange[300],
+        type: BottomNavigationBarType.fixed,
+        items: <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(FontAwesomeIcons.cog, size: 20),
+            title: Text('Setting'),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(FontAwesomeIcons.home, size: 20),
+            title: Text('Home'),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(FontAwesomeIcons.history, size: 20),
+            title: Text('History'),
+          ),
+        ],
+        onTap: (index){
+          setState(() {
+            currentIndex = index;
+          });
+        },
       ),
     );
   }
