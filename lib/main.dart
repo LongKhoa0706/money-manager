@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:money_manager/presentation/pages/home/tabs/setting/main/categories_page.dart';
+import 'package:money_manager/presentation/pages/home/tabs/setting/main/passcode_page.dart';
 import 'presentation/pages/splash/onboard_page.dart';
 import 'presentation/pages/splash/splash_page.dart';
 import 'presentation/pages/home/home_page.dart';
@@ -11,7 +13,7 @@ class Application extends StatelessWidget {
   /// Create a Application widget.
   Application({
     Key key,
-  }): super(key: key);
+  }) : super(key: key);
 
   /// Build this widget.
   @override
@@ -34,6 +36,16 @@ class Application extends StatelessWidget {
           case '/home':
             return MaterialPageRoute(
               builder: (context) => HomePage(),
+            );
+            break;
+          case '/settings/categories':
+            return MaterialPageRoute(
+              builder: (_) => CategoriePage(),
+            );
+            break;
+          case '/settings/passcodepage':
+            return MaterialPageRoute(
+              builder: (_) => PassCodePage(),
             );
             break;
           default:

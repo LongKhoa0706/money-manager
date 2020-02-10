@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:money_manager/presentation/shared/custom_icon.dart';
 
@@ -14,8 +15,10 @@ class RecentTab extends StatelessWidget {
     ScreenUtil.init(context);
     return Scaffold(
       floatingActionButton: FloatingActionButton(
-        backgroundColor: Colors.deepOrange[400],
-        onPressed: () {},
+        backgroundColor: Colors.deepOrange[300],
+        onPressed: () {
+          // TODO do something
+        },
         child: Icon(
           Icons.add,
           color: Colors.white,
@@ -28,8 +31,8 @@ class RecentTab extends StatelessWidget {
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
             colors: <Color>[
+              Colors.orange[200],
               Colors.orange[300],
-              Colors.orange[400],
             ],
           ),
         ),

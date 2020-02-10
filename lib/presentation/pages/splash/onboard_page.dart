@@ -1,5 +1,7 @@
+
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class OnboardPage extends StatefulWidget {
   /// Create a OnboardPage widget.
@@ -30,7 +32,7 @@ class _OnboardPageState extends State<OnboardPage> {
 
   /// Called when this state first inserted into tree.
   @override
-  void initState() {
+  void initState()  {
     super.initState();
   }
 
@@ -50,6 +52,7 @@ class _OnboardPageState extends State<OnboardPage> {
   @override
   void dispose() {
     super.dispose();
+    swiperController.dispose();
   }
 
   /// Build the widget with this state.
@@ -92,7 +95,7 @@ class _OnboardPageState extends State<OnboardPage> {
                   borderRadius: BorderRadius.circular(10),
                 ),
                 onPressed: () {
-                  Navigator.pushReplacementNamed(context, '/home');
+                 Navigator.pushNamed(context, '/home');
                 },
                 child: Text(
                   'Skip',
@@ -109,6 +112,7 @@ class _OnboardPageState extends State<OnboardPage> {
       ),
     );
   }
+
 }
 
 class IntroItem extends StatelessWidget {
@@ -148,4 +152,5 @@ class IntroItem extends StatelessWidget {
       ),
     );
   }
+
 }

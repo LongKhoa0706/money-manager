@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class SplashPage extends StatefulWidget {
   /// Create a SplashPage widget.
@@ -19,7 +20,7 @@ class _SplashPageState extends State<SplashPage> {
     super.initState();
     Timer(
       Duration(seconds: 2),
-      () => Navigator.pushReplacementNamed(context, '/onboard'),
+      () => checkFirstScreen(),
     );
   }
 
@@ -95,5 +96,15 @@ class _SplashPageState extends State<SplashPage> {
         ),
       ),
     );
+  }
+  Future checkFirstScreen() async {
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    bool check = sharedPreferences.getBool('firstscreen') ?? false;
+    if (check) {
+      Navigator.of(context).pushReplacementNamed('/home');
+    }else{
+      await sharedPreferences.setBool('firstscreen', true);
+      Navigator.of(context).pushReplacementNamed('/onboard');
+    }
   }
 }

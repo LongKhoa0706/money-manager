@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:money_manager/presentation/pages/home/tabs/setting/main/categories_page.dart';
+import 'package:money_manager/presentation/pages/home/tabs/setting/main/passcode_page.dart';
 
 class SettingTab extends StatefulWidget {
   /// Create a SettingTab widget.
@@ -14,7 +16,7 @@ class SettingTab extends StatefulWidget {
 class _SettingTabState extends State<SettingTab> {
   List<String> listOptionMain = <String>[
     'Categories',
-    'Lock ',
+    'Passcode ',
   ];
   List<IconData> listOptionIconMain = <IconData>[
     Icons.widgets,
@@ -32,7 +34,6 @@ class _SettingTabState extends State<SettingTab> {
     Icons.star,
     Icons.info,
   ];
-
   /// Build this widget.
   @override
   Widget build(BuildContext context) {
@@ -68,6 +69,16 @@ class _SettingTabState extends State<SettingTab> {
                 shrinkWrap: true,
                 itemBuilder: (_, index) {
                   return ListTile(
+                    onTap: (){
+                      switch(index){
+                        case 0:
+                          Navigator.pushNamed(context, '/settings/categories');
+                          break;
+                        case 1:
+                          Navigator.pushNamed(context, '/settings/passcodepage');
+                          break;
+                      }
+                    },
                     leading: Icon(
                       listOptionIconMain[index],
                       color: Colors.orange[300],
@@ -75,6 +86,7 @@ class _SettingTabState extends State<SettingTab> {
                     title: Text(
                       listOptionMain[index],
                     ),
+
                     trailing: Icon(
                       Icons.arrow_forward_ios,
                       size: 15,
