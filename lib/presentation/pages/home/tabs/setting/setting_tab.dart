@@ -109,32 +109,38 @@ class GroupListTile extends StatelessWidget {
     List<Widget> children = <Widget>[];
     items.forEach((data) {
       children.add(
-        GestureDetector(
-          onTap: data.onPressed,
-          child: Container(
-            decoration: BoxDecoration(
-              color: Color(0xffffffff),
-              border: Border(
-                bottom: BorderSide(color: Color(0xffc2c3c4).withOpacity(0.5)),
-              ),
+        Container(
+          decoration: BoxDecoration(
+            color: Color(0xffffffff),
+            border: Border(
+              bottom: BorderSide(color: Color(0xffc2c3c4).withOpacity(0.5)),
             ),
-            padding: const EdgeInsets.symmetric(horizontal: 12),
-            height: 60,
-            child: Row(
-              children: <Widget>[
-                Icon(
-                  data.icon,
-                  color: Colors.orange[300],
+          ),
+
+          height: 60,
+          child: Material(
+            color: Colors.transparent,
+            child: InkWell(
+              onTap: data.onPressed,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 12),
+                child: Row(
+                  children: <Widget>[
+                    Icon(
+                      data.icon,
+                      color: Colors.orange,
+                    ),
+                    const SizedBox(width: 10),
+                    Expanded(
+                      child: Text(data.title,style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold),),
+                    ),
+                    Icon(
+                      Icons.arrow_forward_ios,
+                      size: 16,
+                    ),
+                  ],
                 ),
-                const SizedBox(width: 10),
-                Expanded(
-                  child: Text(data.title),
-                ),
-                Icon(
-                  Icons.arrow_forward_ios,
-                  size: 16,
-                ),
-              ],
+              ),
             ),
           ),
         ),

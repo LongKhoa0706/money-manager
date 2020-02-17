@@ -77,7 +77,7 @@ class _RecentTabState extends State<RecentTab> {
                     Text(
                       'Total Balance',
                       style: TextStyle(
-                        color: Colors.white,
+                        color: Colors.black,
                         fontWeight: FontWeight.w400,
                         fontSize: 17,
                       ),
@@ -98,7 +98,7 @@ class _RecentTabState extends State<RecentTab> {
                           return Text(
                             total.toStringAsFixed(2),
                             style: TextStyle(
-                              color: Colors.white,
+                              color: Colors.black,
                               fontWeight: FontWeight.w600,
                               fontSize: 34,
                             ),
@@ -138,7 +138,7 @@ class _RecentTabState extends State<RecentTab> {
                               ),
                             ),
                             Chip(
-                              label: Text('See all'),
+                              label: Text('See all',style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold),),
                             ),
                           ],
                         ),
@@ -159,7 +159,7 @@ class _RecentTabState extends State<RecentTab> {
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.deepOrange[400],
         onPressed: () {
-          // TODO: Handle click add button.
+         Navigator.pushNamed(context, '/add');
         },
         child: Icon(
           Icons.add,

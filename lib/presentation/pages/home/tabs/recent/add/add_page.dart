@@ -1,50 +1,28 @@
 import 'package:flutter/material.dart';
-import 'tabs/expense_tab.dart';
-import 'tabs/income_tab.dart';
+import 'package:money_manager/presentation/pages/home/tabs/recent/add/tab/add_expenses_page.dart';
+import 'package:money_manager/presentation/pages/home/tabs/recent/add/tab/add_income_page.dart';
 
-class CategoriesPage extends StatefulWidget {
-  /// Create a CategoriesPage widget.
-  CategoriesPage({
-    Key key,
-  }): super(key: key);
-
-  /// Creates the mutable state for this widget at a given location in the tree.
+class AddPage extends StatefulWidget {
   @override
-  State<CategoriesPage> createState() => _CategoriesPageState();
+  _AddPageState createState() => _AddPageState();
 }
 
-class _CategoriesPageState extends State<CategoriesPage> with SingleTickerProviderStateMixin {
+class _AddPageState extends State<AddPage> with SingleTickerProviderStateMixin {
   TabController tabController;
-
+  int index = 0;
+  String text = '';
   /// Called when this state first inserted into tree.
   @override
   void initState() {
     super.initState();
     tabController = TabController(length: 2, vsync: this);
-
-
+    tabController.animation.addListener(onTabChanged);
   }
-
-  /// Called when a dependency of this state object changes.
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-  }
-
-  /// Called whenever the widget configuration changes.
-  @override
-  void didUpdateWidget(CategoriesPage old) {
-    super.didUpdateWidget(old);
-  }
-
-  /// Called when this state removed from the tree.
   @override
   void dispose() {
     tabController.dispose();
     super.dispose();
   }
-
-  /// Build the widget with this state.
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -66,10 +44,8 @@ class _CategoriesPageState extends State<CategoriesPage> with SingleTickerProvid
           icon: Icon(Icons.arrow_back),
           onPressed: () => Navigator.maybePop(context),
         ),
-        centerTitle: true,
-        title: Text('Categories Setting'),
+        title: Text(text.isEmpty ? 'Expenses' : text),
         bottom: TabBar(
-
           indicatorColor: Colors.deepOrange,
           controller: tabController,
           labelColor: Colors.black,
@@ -83,11 +59,25 @@ class _CategoriesPageState extends State<CategoriesPage> with SingleTickerProvid
       body: TabBarView(
         controller: tabController,
         children: <Widget>[
-          ExpenseTab(),
-          IncomeTab(),
+          AddExpensesPage(),
+          AddIncomePage(),
         ],
       ),
+
     );
   }
-
+  void onTabChanged() {
+    final aniValue = tabController.animation.value;
+    if (aniValue > 0.5 && index != 1) {
+      setState(() {
+        index = 1;
+        text = 'Income';
+      });
+    } else if (aniValue <= 0.5 && index != 0) {
+      setState(() {
+        index = 0;
+        text = 'Expenses';
+      });
+    }
+  }
 }

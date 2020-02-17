@@ -48,7 +48,6 @@ class _PasscodePageState extends State<PasscodePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xffffffff),
       body: SafeArea(
         child: Container(
           width: double.infinity,
@@ -93,7 +92,6 @@ class _PasscodePageState extends State<PasscodePage> {
                       ),
                     );
                   }
-
                   return Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: children,

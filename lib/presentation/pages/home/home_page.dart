@@ -61,20 +61,20 @@ class _HomePageState extends State<HomePage> {
         currentIndex: currentIndex,
         elevation: 0,
 
-        selectedItemColor: Colors.orange[300],
+        selectedItemColor: Colors.orange,
         type: BottomNavigationBarType.fixed,
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(FontAwesomeIcons.cog, size: 20),
-            title: Text('Setting'),
+            title: Text('Setting',style: TextStyle(fontWeight: FontWeight.bold),),
           ),
           BottomNavigationBarItem(
             icon: Icon(FontAwesomeIcons.home, size: 20),
-            title: Text('Home'),
+            title: Text('Home',style: TextStyle(fontWeight: FontWeight.bold),),
           ),
           BottomNavigationBarItem(
             icon: Icon(FontAwesomeIcons.history, size: 20),
-            title: Text('History'),
+            title: Text('History',style: TextStyle(fontWeight: FontWeight.bold),),
           ),
         ],
         onTap: (index){
