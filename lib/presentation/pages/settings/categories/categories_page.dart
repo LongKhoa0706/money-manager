@@ -1,30 +1,48 @@
 import 'package:flutter/material.dart';
-import 'package:money_manager/presentation/pages/home/tabs/setting/main/tab/expenses_tab.dart';
-import 'package:money_manager/presentation/pages/home/tabs/setting/main/tab/income_tab.dart';
+import 'tabs/expense_tab.dart';
+import 'tabs/income_tab.dart';
 
-class CategoriePage extends StatefulWidget {
+class CategoriesPage extends StatefulWidget {
+  /// Create a CategoriesPage widget.
+  CategoriesPage({
+    Key key,
+  }): super(key: key);
+
+  /// Creates the mutable state for this widget at a given location in the tree.
   @override
-  _CategoriePageState createState() => _CategoriePageState();
+  State<CategoriesPage> createState() => _CategoriesPageState();
 }
 
-class _CategoriePageState extends State<CategoriePage>
-    with SingleTickerProviderStateMixin {
+class _CategoriesPageState extends State<CategoriesPage> with SingleTickerProviderStateMixin {
   TabController tabController;
 
+  /// Called when this state first inserted into tree.
   @override
   void initState() {
-
     super.initState();
     tabController = TabController(length: 2, vsync: this);
   }
 
+  /// Called when a dependency of this state object changes.
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+  }
+
+  /// Called whenever the widget configuration changes.
+  @override
+  void didUpdateWidget(CategoriesPage old) {
+    super.didUpdateWidget(old);
+  }
+
+  /// Called when this state removed from the tree.
   @override
   void dispose() {
-
     tabController.dispose();
     super.dispose();
   }
 
+  /// Build the widget with this state.
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -54,23 +72,18 @@ class _CategoriePageState extends State<CategoriePage>
           labelColor: Colors.black,
           unselectedLabelColor: Colors.white,
           tabs: <Widget>[
-            Tab(
-              text: "Expenses",
-            ),
-            Tab(
-              text: "Income",
-            ),
+            Tab(text: 'Expenses'),
+            Tab(text: 'Income'),
           ],
         ),
       ),
       body: TabBarView(
         controller: tabController,
         children: <Widget>[
-          ExpensesTab(),
+          ExpenseTab(),
           IncomeTab(),
         ],
       ),
-
     );
   }
 }

@@ -70,11 +70,13 @@ class LocalDataSource {
     await db.execute('''
     CREATE TABLE Transactions(
       id INTEGER PRIMARY KEY AUTOINCREMENT,
+      account_id INTEGER NOT NULL,
       category_id INTEGER NOT NULL,
       title TEXT NOT NULL,
       amount REAL NOT NULL,
       created_date INTEGER NOT NULL,
       updated_date INTEGER NOT NULL,
+      FOREIGN KEY (account_id) REFERENCES Account(id) ON DELETE CASCADE,
       FOREIGN KEY (category_id) REFERENCES Category(id) ON DELETE CASCADE
     )
     ''');

@@ -18,10 +18,7 @@ class _SplashPageState extends State<SplashPage> {
   @override
   void initState() {
     super.initState();
-    Timer(
-      Duration(seconds: 2),
-      () => checkFirstScreen(),
-    );
+    Timer(Duration(seconds: 2), () => isFirstRun());
   }
 
   /// Called when a dependency of this state object changes.
@@ -97,13 +94,15 @@ class _SplashPageState extends State<SplashPage> {
       ),
     );
   }
-  Future checkFirstScreen() async {
-    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-    bool check = sharedPreferences.getBool('firstscreen') ?? false;
+
+  void isFirstRun() async {
+    var sharedPreferences = await SharedPreferences.getInstance();
+    var check = sharedPreferences.getBool('first-run') ?? false;
+
     if (check) {
       Navigator.of(context).pushReplacementNamed('/home');
-    }else{
-      await sharedPreferences.setBool('firstscreen', true);
+    } else {
+      await sharedPreferences.setBool('first-run', true);
       Navigator.of(context).pushReplacementNamed('/onboard');
     }
   }

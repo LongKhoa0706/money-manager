@@ -4,6 +4,7 @@ import 'package:money_manager/domain/entities/transaction_entity.dart';
 class TransactionModel extends TransactionEntity {
   TransactionModel({
     int id,
+    @required int accountId,
     @required int categoryId,
     @required String title,
     @required double amount,
@@ -11,6 +12,7 @@ class TransactionModel extends TransactionEntity {
     @required DateTime updatedDate,
   }): super(
     id: id,
+    accountId: accountId,
     categoryId: categoryId,
     title: title,
     amount: amount,
@@ -21,6 +23,7 @@ class TransactionModel extends TransactionEntity {
   factory TransactionModel.from(Map<String, dynamic> data) {
     return TransactionModel(
       id: data['id'],
+      accountId: data['account_id'],
       categoryId: data['category_id'],
       title: data['title'],
       amount: data['amount'],

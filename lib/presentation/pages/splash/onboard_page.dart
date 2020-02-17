@@ -1,7 +1,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class OnboardPage extends StatefulWidget {
   /// Create a OnboardPage widget.
@@ -80,7 +79,7 @@ class _OnboardPageState extends State<OnboardPage> {
                 });
               },
               itemCount: listTitle.length,
-              itemBuilder: (_, index) {
+              itemBuilder: (context, index) {
                 return IntroItem(
                   title: listTitle[index],
                   image: listImage[index],
@@ -95,12 +94,12 @@ class _OnboardPageState extends State<OnboardPage> {
                   borderRadius: BorderRadius.circular(10),
                 ),
                 onPressed: () {
-                 Navigator.pushNamed(context, '/home');
+                  Navigator.of(context).pushNamed('/home');
                 },
                 child: Text(
                   'Skip',
                   style: TextStyle(
-                    color: Colors.black,
+                    color: Colors.black.withOpacity(0.75),
                     fontWeight: FontWeight.w500,
                     fontSize: 15,
                   ),
@@ -112,15 +111,16 @@ class _OnboardPageState extends State<OnboardPage> {
       ),
     );
   }
-
 }
 
 class IntroItem extends StatelessWidget {
   const IntroItem({
     Key key,
-    this.title,
-    this.image,
-  }) : super(key: key);
+    @required this.title,
+    @required this.image,
+  }): assert(title != null),
+      assert(image != null),
+      super(key: key);
 
   final String title;
   final String image;
@@ -147,10 +147,9 @@ class IntroItem extends StatelessWidget {
               fontWeight: FontWeight.w500,
               fontSize: 22,
             ),
-          )
+          ),
         ],
       ),
     );
   }
-
 }

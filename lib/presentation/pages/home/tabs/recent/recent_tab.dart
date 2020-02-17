@@ -1,29 +1,55 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:money_manager/presentation/shared/custom_icon.dart';
+import 'package:money_manager/domain/entities/transaction_entity.dart';
+import 'package:money_manager/domain/entities/account_entity.dart';
 
-class RecentTab extends StatelessWidget {
+import 'recent_controller.dart';
+import 'sections/transaction_list_view.dart';
+
+class RecentTab extends StatefulWidget {
   /// Create a RecentTab widget.
   RecentTab({
     Key key,
-  }) : super(key: key);
+  }): super(key: key);
 
-  /// Build this widget.
+  /// Creates the mutable state for this widget at a given location in the tree.
+  @override
+  State<RecentTab> createState() => _RecentTabState();
+}
+
+class _RecentTabState extends State<RecentTab> {
+  RecentController controller;
+
+  /// Called when this state first inserted into tree.
+  @override
+  void initState() {
+    super.initState();
+    controller = RecentController();
+  }
+
+  /// Called when a dependency of this state object changes.
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+  }
+
+  /// Called whenever the widget configuration changes.
+  @override
+  void didUpdateWidget(RecentTab old) {
+    super.didUpdateWidget(old);
+  }
+
+  /// Called when this state removed from the tree.
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
+  }
+
+  /// Build the widget with this state.
   @override
   Widget build(BuildContext context) {
-    ScreenUtil.init(context);
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: Colors.deepOrange[300],
-        onPressed: () {
-          // TODO do something
-        },
-        child: Icon(
-          Icons.add,
-          color: Colors.white,
-        ),
-      ),
       body: Container(
         width: double.infinity,
         decoration: BoxDecoration(
@@ -31,8 +57,8 @@ class RecentTab extends StatelessWidget {
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
             colors: <Color>[
-              Colors.orange[200],
               Colors.orange[300],
+              Colors.orange[400],
             ],
           ),
         ),
@@ -40,41 +66,51 @@ class RecentTab extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              SizedBox(
-                height: ScreenUtil().setHeight(100),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 10),
-                child: Column(crossAxisAlignment: CrossAxisAlignment.start,
+              Container(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 10,
+                  vertical: 20,
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     Text(
-                      'Total Spend Money',
+                      'Total Balance',
                       style: TextStyle(
                         color: Colors.white,
                         fontWeight: FontWeight.w400,
-                        fontSize: ScreenUtil().setSp(55),
+                        fontSize: 17,
                       ),
                     ),
-                    Text(
-                      '\$5000',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.w600,
-                        fontSize: ScreenUtil().setSp(90),
-                      ),
+                    StreamBuilder<List<AccountEntity>>(
+                      stream: controller.accounts,
+                      builder: (context, snapshot) {
+                        if (snapshot.connectionState == ConnectionState.waiting) {
+                          return const Center(
+                            child: CircularProgressIndicator(),
+                          );
+                        } else {
+                          double total = 0;
+                          for (var account in snapshot.data) {
+                            total += account.balance;
+                          }
+
+                          return Text(
+                            total.toStringAsFixed(2),
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.w600,
+                              fontSize: 34,
+                            ),
+                          );
+                        }
+                      },
                     ),
                   ],
                 ),
               ),
-              SizedBox(
-                height: ScreenUtil().setHeight(80),
-              ),
               Expanded(
                 child: Container(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 25,
-                    vertical: 30,
-                  ),
                   decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.only(
@@ -82,113 +118,34 @@ class RecentTab extends StatelessWidget {
                       topRight: Radius.circular(30),
                     ),
                   ),
-                  child: ListView(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: <Widget>[
-                          Text(
-                            "Recent Activity",
-                            style: TextStyle(
-                              color: Colors.black,
-                              fontWeight: FontWeight.w500,
-                              fontSize: ScreenUtil().setSp(60),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(top: 5),
-                            child: Icon(
-                              Icons.arrow_forward_ios,
-                              color: Colors.black,
-                              size: 18,
-                            ),
-                          ),
-                        ],
-                      ),
-                      SizedBox(
-                        height: ScreenUtil().setHeight(40),
-                      ),
-                      Text(
-                        "Your Activity ",
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontWeight: FontWeight.w500,
-                          fontSize: ScreenUtil().setSp(45),
-                        ),
-                      ),
-                      SizedBox(
-                        height: ScreenUtil().setHeight(60),
-                      ),
                       Container(
                         padding: const EdgeInsets.symmetric(
-                          horizontal: 20,
-                          vertical: 10,
+                          horizontal: 18,
+                          vertical: 16,
                         ),
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(15),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.black26,
-                              offset: Offset(2, 2),
-                              blurRadius: 3,
-                            ),
-                          ],
-                        ),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: <Widget>[
-                            Container(
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: <Widget>[
-                                  Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                    children: <Widget>[
-                                      Text("Aug 18"),
-                                      Text("Expenses: \$9000"),
-                                    ],
-                                  ),
-                                  Divider(
-                                    color: Colors.grey,
-                                    height: 20,
-                                  ),
-                                  ListView.separated(
-                                    shrinkWrap: true,
-                                    itemBuilder: (_, index) {
-                                      return ListTile(
-                                        contentPadding:
-                                            EdgeInsets.only(left: 0),
-                                        leading: CustomIcon(
-                                          iconData: Icons.free_breakfast,
-                                        ),
-                                        trailing: Text(
-                                          "\$3000",
-                                          style: TextStyle(
-                                              color: Colors.black,
-                                              fontWeight: FontWeight.w500),
-                                        ),
-                                        title: Text(
-                                          "Lunch",
-                                          style: TextStyle(
-                                            color: Colors.black,
-                                            fontWeight: FontWeight.w600,
-                                          ),
-                                        ),
-                                      );
-                                    },
-                                    separatorBuilder: (_, index) {
-                                      return Divider(
-                                        color: Colors.grey,
-                                      );
-                                    },
-                                    itemCount: 3,
-                                  ),
-                                ],
+                            Text(
+                              'Recent Transaction',
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontWeight: FontWeight.w500,
+                                fontSize: 17,
                               ),
                             ),
+                            Chip(
+                              label: Text('See all'),
+                            ),
                           ],
+                        ),
+                      ),
+                      Expanded(
+                        child: TransactionListView(
+                          data: Map<DateTime, List<TransactionEntity>>(),
                         ),
                       ),
                     ],
@@ -197,6 +154,16 @@ class RecentTab extends StatelessWidget {
               ),
             ],
           ),
+        ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.deepOrange[400],
+        onPressed: () {
+          // TODO: Handle click add button.
+        },
+        child: Icon(
+          Icons.add,
+          color: Colors.white,
         ),
       ),
     );
