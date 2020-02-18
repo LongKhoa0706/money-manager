@@ -21,8 +21,6 @@ class _CategoriesPageState extends State<CategoriesPage> with SingleTickerProvid
   void initState() {
     super.initState();
     tabController = TabController(length: 2, vsync: this);
-
-
   }
 
   /// Called when a dependency of this state object changes.

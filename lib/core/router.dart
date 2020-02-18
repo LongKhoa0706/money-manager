@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:money_manager/presentation/pages/home/tabs/recent/add/add_page.dart';
 
-
+import '../presentation/pages/settings/accounts/accounts_page.dart';
 import '../presentation/pages/settings/categories/categories_page.dart';
 import '../presentation/pages/passcode/passcode_page.dart';
 import '../presentation/pages/home/home_page.dart';
@@ -43,6 +44,10 @@ class Router {
           builder: (context) => HomePage(),
         );
         break;
+      case '/add':
+        return MaterialPageRoute(
+          builder: (_)=>AddPage(),
+        );
       default:
         return MaterialPageRoute(
           builder: (context) => HomePage(),

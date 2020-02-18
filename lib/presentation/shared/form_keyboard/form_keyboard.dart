@@ -154,7 +154,7 @@ class _FormKeyBoardState extends State<FormKeyBoard> {
         child: Container(
           height: 64,
           width: 64,
-          child: Icon(FontAwesomeIcons.minus,size: 18,),
+          child: Icon(FontAwesomeIcons.minus,size: 18),
         ),
       ),
     );
@@ -171,7 +171,7 @@ class _FormKeyBoardState extends State<FormKeyBoard> {
         child: Container(
           height: 64,
           width: 64,
-          child: Icon(FontAwesomeIcons.backspace,size: 18,),
+          child: Icon(FontAwesomeIcons.backspace,size: 18),
         ),
       ),
     );
@@ -199,7 +199,7 @@ class _FormKeyBoardState extends State<FormKeyBoard> {
               ],
             ),
           ),
-          child: Icon(FontAwesomeIcons.checkCircle,size: 23,),
+          child: Icon(FontAwesomeIcons.checkCircle,size: 23),
         ),
       ),
     );
